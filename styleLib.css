@@ -13,10 +13,68 @@ body {
   font-family: 'Press Start 2P';
 }
 
-h1 {
+.dataInputForm {
   display: flex;
+  flex-direction: column;
   position: absolute;
-  top: 40%;
-  text-shadow: 2px 2px 5px rgb(255, 110, 110);
+  top: 10%;
+  text-shadow: 2px 2px 4px rgb(255, 0, 0);
+  border: 5px outset black;
+  background-color: rgb(49, 49, 49);
+  color: rgb(255, 255, 255);
+  font-size: 0.8rem;
 }
 
+.textAndNumberInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+input[type=text],
+input[type=number] {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  text-align: center;
+  border: 2px outset red;
+  border-radius: 20px;
+  background-color: rgb(65, 65, 65);
+  color: white;
+}
+
+p {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+
+.bookStatus {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit {
+  margin-top: 15px;
+  padding: 5px;
+  appearance: none;
+  outline: none;
+  text-align: center;
+  border: 2px outset rgb(255, 153, 0);
+  border-radius: 20px;
+  background-color: rgb(65, 65, 65);
+  color: white;
+  cursor: crosshair;
+}

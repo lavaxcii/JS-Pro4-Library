@@ -15,13 +15,68 @@
   <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300&family=Press+Start+2P&display=swap" rel="stylesheet"> 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <script src="appLibc.js" defer></script>
+  <script src="./appLib.js" defer></script>
 
 </head>
 
 <body>
-
-  <h1>UNDER CONSTRUCTION</h1>
+  <div class="dataInputForm">
+    <div class="textAndNumberInput">
+      <p>Book name:</p>
+      <input type="text" value='Unknown'>
+    </div>
+    <div class="textAndNumberInput">
+      <p>Author of the book:</p>
+      <input type="text" value='Unknown'>
+    </div>
+    <div class="textAndNumberInput">
+      <p>Title of the book:</p>
+      <input type="text" value='Unknown'>
+    </div>
+    <div class="textAndNumberInput">
+      <p>Number of pages:</p>
+      <input type="number" value='0' required>
+    </div>
+    <div class="textAndNumberInput">
+      <p>Century of print:</p>
+      <input type="number" value='0'required>
+    </div>
+    <div class="textAndNumberInput">
+      <p>Printing press type:</p>
+      <input type="text" value='Unknown'>
+    </div>
+    <div class="bookStatus">
+      <p>Have you read the book?</p>
+      <div class='options'>
+        <label for="yes">Yes</label>
+        <input type="radio" id="yesRead" name="read" value="true">
+        <label for="no">No</label>
+        <input type="radio" id="noRead" name="read"
+        value="false" checked>
+      </div>
+    </div>
+    <div class="bookStatus">
+      <p>Is the book cute by any means?</p>
+      <div class='options'>
+        <label for="yes">Yes</label>
+        <input type="radio" id="yesCute" name="cute" value="true">
+        <label for="no">No</label>
+        <input type="radio" id="noCute" name="cute"
+        value="false" checked>
+      </div>
+    </div>
+    <div class="bookStatus">
+      <p>Are there any cats in the book?</p>
+      <div class='options'>
+        <label for="yes">Yes</label>
+        <input type="radio" id="yesCat" name="cat" value="true">
+        <label for="no">No</label>
+        <input type="radio" id="noCat" name="cat"
+        value="false" checked>
+      </div>
+      <button class="submit">SUBMIT</button>
+    </div>
+  </div>
 
 </body>
 
