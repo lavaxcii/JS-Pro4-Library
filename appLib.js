@@ -27,6 +27,18 @@ const bookkie1 = new Book('James Smith', 'Jesus comes to Merica', 245, 18, 'Gute
 
 console.log(bookkie1);
 
+const addBookDiv = document.querySelector('.addBookDiv');
+const addBookIcon = document.querySelector('.fa-plus-circle');
+const dataInputForm = document.querySelector('.dataInputForm');
+
+function showDataInputForm() {
+  addBookIcon.style.fontSize = '0rem';
+  addBookDiv.style.visibility = 'hidden';
+  dataInputForm.style.visibility = 'visible'
+}
+
+document.querySelector('.addBookButton').addEventListener('click', showDataInputForm);
+
 /*
 TODO:
 -- 1 -- INTRO SCREEN

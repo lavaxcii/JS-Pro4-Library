@@ -1,28 +1,59 @@
+* {
+  transition: 0.3s ease;
+}
+
 body {
   display: flex;
-  justify-content: center;
+  position: static;
+  justify-content: space-between;
   align-items: center;
   flex-direction: row;
+  height: 100vh;
+  width: 100vw;
   background-image: linear-gradient(100deg, #555555, rgb(0, 0, 0));
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 0%;
   margin: 0;
-  transition: 0.5s ease;
   font-family: 'Press Start 2P';
 }
 
 .dataInputForm {
   display: flex;
+  position: static;
   flex-direction: column;
-  position: absolute;
-  top: 10%;
   text-shadow: 2px 2px 4px rgb(255, 0, 0);
   border: 5px outset black;
   background-color: rgb(49, 49, 49);
   color: rgb(255, 255, 255);
   font-size: 0.8rem;
+  visibility: hidden;
+  margin-right: 2%;
+}
+
+.addBookDiv {
+  display: flex;
+  position: relative;
+  right: -35%;
+  bottom: 350px;
+  visibility: visible;
+}
+
+.fa-plus-circle {
+  font-size: 6rem;
+  color: rgb(255, 88, 88);
+  text-shadow: 0px 2px 1px rgb(255, 255, 255);
+}
+
+button {
+  appearance: none;
+  outline: none;
+  background: inherit;
+  border: 2px outset gray;
+  border-radius: 65px;
+  margin: 0;
+  padding: 0;
 }
 
 .textAndNumberInput {
@@ -50,7 +81,6 @@ p {
   margin-bottom: 10px;
 }
 
-
 .bookStatus {
   display: flex;
   flex-direction: column;
@@ -67,7 +97,7 @@ p {
 }
 
 .submit {
-  margin-top: 15px;
+  margin-top: 35px;
   padding: 5px;
   appearance: none;
   outline: none;
@@ -77,4 +107,29 @@ p {
   background-color: rgb(65, 65, 65);
   color: white;
   cursor: crosshair;
+}
+
+.bookShelf {
+  position: static;
+  display: grid;
+  justify-content: center;
+  align-items: stretch;
+  align-self: center;  
+  align-content: stretch;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 5px 0px;
+  bottom: 6.5%;
+  text-shadow: 2px 2px 4px rgb(255, 0, 0);
+  border: 5px outset black;
+  background-color: rgb(49, 49, 49);
+  color: rgb(255, 255, 255);
+  font-size: 0.8rem;
+  margin-left: 1%;
+}
+
+.meow {
+  border: 5px outset purple;
+  min-width: 250px;
+  margin: 0;
+  font-size: 2rem;
 }
