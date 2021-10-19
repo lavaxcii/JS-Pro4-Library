@@ -24,24 +24,47 @@ Book.prototype.catnessStatus = function(status) {
 }
 
 const bookkie1 = new Book('James Smith', 'Jesus comes to Merica', 245, 18, 'Gutenberg', true, false, false);
-
 console.log(bookkie1);
 
 const addBookDiv = document.querySelector('.addBookDiv');
 const addBookIcon = document.querySelector('.fa-plus-circle');
 const dataInputForm = document.querySelector('.dataInputForm');
 
-function showDataInputForm() {
+function showHideDataInputForm() {
+  if (dataInputForm.style.visibility === 'visible') {
+    addBookIcon.style.fontSize = '6rem';
+    addBookDiv.style.visibility = 'visible';
+    dataInputForm.style.visibility = 'hidden';
+    return;
+  };
   addBookIcon.style.fontSize = '0rem';
   addBookDiv.style.visibility = 'hidden';
   dataInputForm.style.visibility = 'visible'
 }
 
-document.querySelector('.addBookButton').addEventListener('click', showDataInputForm);
+document.querySelector('.addBookButton').addEventListener('click', showHideDataInputForm);
+document.querySelector('.submitButton').addEventListener('click', showHideDataInputForm);
+
+const authorName = document.querySelector('#authorName');
+const bookName = document.querySelector('#bookName');
+const nrOfPages = document.querySelector('#nrOfPages');
+const centuryOfPrint = document.querySelector('#centuryOfPrint');
+const pressType = document.querySelector('#pressType');
+const readStatus = document.querySelector('input[name="read"]:checked');
+const cutnessStatus = document.querySelector('input[name="cute"]:checked');
+const catnessStatus = document.querySelector('input[name="cat"]:checked');
+
+
+function addBookToShelf() {
+  let n = 0;
+  const book = new
+}
+
+
 
 /*
 TODO:
--- 1 -- INTRO SCREEN
+-- 1 -- INTRO SCREEN ++
 Kao prvo, ovo treba biti jednostavno - dakle, na
 ekranu se treba pojaviti neki kao pravokutni okvir koji
 ustvari ima jedan, recimo, veliki plus i onda kada se
@@ -53,7 +76,7 @@ TODO
 Iz navedenoga se vidi da imamo: string, string, nr, nr,
 string, bol, bol i bol.
 TODO
--- 3 -- SUGGESTED WAY OF INPUTING DATA
+-- 3 -- SUGGESTED WAY OF INPUTING DATA 1/2+
 To bi valjalo unjeti na način: inp, inp, inpNr, inpNr,
 inp, button, button, buttona.
 Potom neki kao submit/done i onda se to slaže ili

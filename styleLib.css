@@ -5,7 +5,7 @@
 body {
   display: flex;
   position: static;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: row;
   height: 100vh;
@@ -29,7 +29,6 @@ body {
   color: rgb(255, 255, 255);
   font-size: 0.8rem;
   visibility: hidden;
-  margin-right: 2%;
 }
 
 .addBookDiv {
@@ -46,11 +45,15 @@ body {
   text-shadow: 0px 2px 1px rgb(255, 255, 255);
 }
 
+.addBookButton {
+  cursor: pointer;
+}
+
 button {
   appearance: none;
   outline: none;
   background: inherit;
-  border: 2px outset gray;
+  border: none;
   border-radius: 65px;
   margin: 0;
   padding: 0;
@@ -96,7 +99,7 @@ p {
   align-items: center;
 }
 
-.submit {
+.submitButton {
   margin-top: 35px;
   padding: 5px;
   appearance: none;
@@ -106,7 +109,7 @@ p {
   border-radius: 20px;
   background-color: rgb(65, 65, 65);
   color: white;
-  cursor: crosshair;
+  cursor: pointer;
 }
 
 .bookShelf {
@@ -124,10 +127,9 @@ p {
   background-color: rgb(49, 49, 49);
   color: rgb(255, 255, 255);
   font-size: 0.8rem;
-  margin-left: 1%;
 }
 
-.meow {
+.bookOnShelf {
   border: 5px outset purple;
   min-width: 250px;
   margin: 0;

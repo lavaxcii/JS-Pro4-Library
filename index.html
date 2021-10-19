@@ -21,38 +21,33 @@
 
 <body>
   <div class="bookShelf">
-    <p class="meow">nenememeomemomeoemoeme</p>
-    <p class="meow">nenememeomemomeoemoeme</p>
+    <p class="bookOnShelf">nenememeomemomeoemoeme</p>
   </div>
   
   <div class="dataInputForm">
     <div class="textAndNumberInput">
-      <p>Book name:</p>
-      <input type="text" value='Unknown'>
-    </div>
-    <div class="textAndNumberInput">
       <p>Author of the book:</p>
-      <input type="text" value='Unknown'>
+      <input id='authorName' type="text" value='Unknown'>
     </div>
     <div class="textAndNumberInput">
       <p>Title of the book:</p>
-      <input type="text" value='Unknown'>
+      <input id='bookName' type="text" value='Unknown'>
     </div>
     <div class="textAndNumberInput">
       <p>Number of pages:</p>
-      <input type="number" value='0' required>
+      <input id='nrOfPages' type="number" value='0' required>
     </div>
     <div class="textAndNumberInput">
       <p>Century of print:</p>
-      <input type="number" value='0'required>
+      <input id='centuryOfPrint' type="number" value='0'required>
     </div>
     <div class="textAndNumberInput">
       <p>Printing press type:</p>
-      <input type="text" value='Unknown'>
+      <input id='pressType' type="text" value='Unknown'>
     </div>
     <div class="bookStatus">
       <p>Have you read the book?</p>
-      <div class='options'>
+      <div class='option'>
         <label for="yes">Yes</label>
         <input type="radio" id="yesRead" name="read" value="true">
         <label for="no">No</label>
@@ -79,10 +74,10 @@
         <input type="radio" id="noCat" name="cat"
         value="false" checked>
       </div>
-      <button class="submit">SUBMIT</button>
+      <button class="submitButton">SUBMIT</button>
     </div>
     <div class="addBookDiv"><button
-    class='addBookButton NonOpaque'><i class="fas
+    class='addBookButton'><i class="fas
     fa-plus-circle"></i></button></div>
   </div>
 </body>
