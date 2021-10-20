@@ -79,6 +79,10 @@ input[type=number] {
   color: white;
 }
 
+input:required:invalid {
+  border-color: #009ac0;
+}
+
 p {
   margin: 0;
   margin-bottom: 10px;

@@ -1,4 +1,4 @@
-let Library = [];
+let library = [];
 
 function Book(author, title, numberOfPages, centuryOfPrint, printingPress, haveYouReadItYet, isItCute, isThereACats) {
   this.author = author
@@ -23,12 +23,26 @@ Book.prototype.catnessStatus = function(status) {
   return this.isThereACats = status;
 }
 
-const bookkie1 = new Book('James Smith', 'Jesus comes to Merica', 245, 18, 'Gutenberg', true, false, false);
-console.log(bookkie1);
-
 const addBookDiv = document.querySelector('.addBookDiv');
 const addBookIcon = document.querySelector('.fa-plus-circle');
 const dataInputForm = document.querySelector('.dataInputForm');
+const form = document.querySelector('form');
+
+function addBookToShelf() {
+  const authorName = document.querySelector('#authorName');
+  const bookName = document.querySelector('#bookName');
+  const nrOfPages = document.querySelector('#nrOfPages');
+  const centuryOfPrint = document.querySelector('#centuryOfPrint');
+  const pressType = document.querySelector('#pressType');
+  const readStatus = document.querySelector('input[name="read"]:checked');
+  const cutnessStatus = document.querySelector('input[name="cute"]:checked');
+  const catnessStatus = document.querySelector('input[name="cat"]:checked');
+  
+  const book = new Book(`${authorName.value}`, `${bookName.value}`, `${nrOfPages.value}`, `${centuryOfPrint.value}`, `${pressType.value}`, `${readStatus.value}`, `${cutnessStatus.value}`, `${catnessStatus.value}`);
+  library.push(book);
+
+  form.reset();
+}
 
 function showHideDataInputForm() {
   if (dataInputForm.style.visibility === 'visible') {
@@ -42,25 +56,22 @@ function showHideDataInputForm() {
   dataInputForm.style.visibility = 'visible'
 }
 
+function inputDataToLibrary() {
+  const authorName = document.querySelector('#authorName');
+  const bookName = document.querySelector('#bookName');
+  const nrOfPages = document.querySelector('#nrOfPages');
+  const centuryOfPrint = document.querySelector('#centuryOfPrint');
+  const pressType = document.querySelector('#pressType');
+  if (dataInputForm.style.visibility === 'visible' && ((authorName.value || bookName.value || nrOfPages.value || centuryOfPrint.value || pressType.value) === '')) {
+    return;
+  } else {
+    addBookToShelf();
+  };
+};
+
 document.querySelector('.addBookButton').addEventListener('click', showHideDataInputForm);
+document.querySelector('.submitButton').addEventListener('click', inputDataToLibrary);
 document.querySelector('.submitButton').addEventListener('click', showHideDataInputForm);
-
-const authorName = document.querySelector('#authorName');
-const bookName = document.querySelector('#bookName');
-const nrOfPages = document.querySelector('#nrOfPages');
-const centuryOfPrint = document.querySelector('#centuryOfPrint');
-const pressType = document.querySelector('#pressType');
-const readStatus = document.querySelector('input[name="read"]:checked');
-const cutnessStatus = document.querySelector('input[name="cute"]:checked');
-const catnessStatus = document.querySelector('input[name="cat"]:checked');
-
-
-function addBookToShelf() {
-  let n = 0;
-  const book = new
-}
-
-
 
 /*
 TODO:

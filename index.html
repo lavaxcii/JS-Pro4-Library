@@ -25,61 +25,61 @@
   </div>
   
   <div class="dataInputForm">
-    <div class="textAndNumberInput">
-      <p>Author of the book:</p>
-      <input id='authorName' type="text" value='Unknown'>
-    </div>
-    <div class="textAndNumberInput">
-      <p>Title of the book:</p>
-      <input id='bookName' type="text" value='Unknown'>
-    </div>
-    <div class="textAndNumberInput">
-      <p>Number of pages:</p>
-      <input id='nrOfPages' type="number" value='0' required>
-    </div>
-    <div class="textAndNumberInput">
-      <p>Century of print:</p>
-      <input id='centuryOfPrint' type="number" value='0'required>
-    </div>
-    <div class="textAndNumberInput">
-      <p>Printing press type:</p>
-      <input id='pressType' type="text" value='Unknown'>
-    </div>
-    <div class="bookStatus">
-      <p>Have you read the book?</p>
-      <div class='option'>
-        <label for="yes">Yes</label>
-        <input type="radio" id="yesRead" name="read" value="true">
-        <label for="no">No</label>
-        <input type="radio" id="noRead" name="read"
-        value="false" checked>
+    <form action="">
+      <div class="textAndNumberInput">
+        <p>Author of the book:</p>
+        <input id='authorName' type="text" value='Unknown' required>
       </div>
-    </div>
-    <div class="bookStatus">
-      <p>Is the book cute by any means?</p>
-      <div class='options'>
-        <label for="yes">Yes</label>
-        <input type="radio" id="yesCute" name="cute" value="true">
-        <label for="no">No</label>
-        <input type="radio" id="noCute" name="cute"
-        value="false" checked>
+      <div class="textAndNumberInput">
+        <p>Title of the book:</p>
+        <input id='bookName' type="text" value='Unknown' required>
       </div>
-    </div>
-    <div class="bookStatus">
-      <p>Are there any cats in the book?</p>
-      <div class='options'>
-        <label for="yes">Yes</label>
-        <input type="radio" id="yesCat" name="cat" value="true">
-        <label for="no">No</label>
-        <input type="radio" id="noCat" name="cat"
-        value="false" checked>
+      <div class="textAndNumberInput">
+        <p>Number of pages:</p>
+        <input id='nrOfPages' type="number" min="1" max="2000" value='1' required>
       </div>
-      <button class="submitButton">SUBMIT</button>
-    </div>
-    <div class="addBookDiv"><button
-    class='addBookButton'><i class="fas
-    fa-plus-circle"></i></button></div>
-  </div>
+      <div class="textAndNumberInput">
+        <p>Century of print:</p>
+        <input id='centuryOfPrint' type="number" min="-30" max="21"
+        value='0' required>
+      </div>
+      <div class="textAndNumberInput">
+        <p>Printing press type:</p>
+        <input id='pressType' type="text"
+        value='Unknown' required>
+      </div>
+      <div class="bookStatus">
+        <p>Have you read the book?</p>
+        <div class='option'>
+          <label for="yes">Yes</label>
+          <input type="radio" id="yesRead" name="read" value="true">
+          <label for="no">No</label>
+          <input type="radio" id="noRead" name="read" value="false" checked>
+        </div>
+      </div>
+      <div class="bookStatus">
+        <p>Is the book cute by any means?</p>
+        <div class='options'>
+          <label for="yes">Yes</label>
+          <input type="radio" id="yesCute" name="cute" value="true">
+          <label for="no">No</label>
+          <input type="radio" id="noCute" name="cute" value="false" checked>
+        </div>
+      </div>
+      <div class="bookStatus">
+        <p>Are there any cats in the book?</p>
+        <div class='options'>
+          <label for="yes">Yes</label>
+          <input type="radio" id="yesCat" name="cat" value="true">
+          <label for="no">No</label>
+          <input type="radio" id="noCat" name="cat" value="false" checked>
+        </div>
+        <button class="submitButton" type="button">SUBMIT</button>
+      </div>
+      <div class="addBookDiv"><button class='addBookButton' type="button"><i class="fas
+        fa-plus-circle"></i></button></div>
+      </div>
+    </form>
 </body>
 
 </html>
