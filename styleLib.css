@@ -5,7 +5,6 @@
 body {
   display: flex;
   position: static;
-  justify-content: space-evenly;
   align-items: center;
   flex-direction: row;
   height: 100vh;
@@ -29,6 +28,7 @@ body {
   color: rgb(255, 255, 255);
   font-size: 0.8rem;
   visibility: hidden;
+  margin-left: 5vw;
 }
 
 .addBookDiv {
@@ -131,9 +131,14 @@ p {
   background-color: rgb(49, 49, 49);
   color: rgb(255, 255, 255);
   font-size: 0.8rem;
+  margin-left: 5vw;
 }
 
 .bookOnShelf {
+  display: flex;
+  position: static;
+  align-items: center;
+  flex-direction: row;
   border: 5px outset purple;
   min-width: 250px;
   margin: 0;
