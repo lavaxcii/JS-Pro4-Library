@@ -28,40 +28,7 @@ const addBookDiv = document.querySelector('.addBookDiv');
 const addBookIcon = document.querySelector('.fa-plus-circle');
 const dataInputForm = document.querySelector('.dataInputForm');
 const form = document.querySelector('form');
-
-function createBookOnShelf() {
-  n++
-  const bookOnShelf = document.createElement('div');
-  bookShelf.appendChild(bookOnShelf);
-  bookOnShelf.classList.add(`bookOnShelf${n}`);
-  for (let nn = 0; n < 9; nn++) {
-    const bookSections = document.createElement(div);
-    const dataToShow = document.createElement(p);
-    document.querySelector(`.bookOnShelf${n}`).appendChild(bookSections);
-    bookSections.classList.add(`div${nn}`);
-    document.querySelector(`.div${nn}`).appendChild(dataToShow);
-    dataToShow.classList.add(`p${nn}`);
-    
-  };
-
-};
-
-function addBookToShelf() {
-  let n = 0;
-  const authorName = document.querySelector('#authorName');
-  const bookName = document.querySelector('#bookName');
-  const nrOfPages = document.querySelector('#nrOfPages');
-  const centuryOfPrint = document.querySelector('#centuryOfPrint');
-  const pressType = document.querySelector('#pressType');
-  const readStatus = document.querySelector('input[name="read"]:checked');
-  const cutnessStatus = document.querySelector('input[name="cute"]:checked');
-  const catnessStatus = document.querySelector('input[name="cat"]:checked');
-  
-  const book = new Book(`${authorName.value}`, `${bookName.value}`, `${nrOfPages.value}`, `${centuryOfPrint.value}`, `${pressType.value}`, `${readStatus.value}`, `${cutnessStatus.value}`, `${catnessStatus.value}`);
-  library.push(book);
-
-  form.reset();
-}
+let n = -1;
 
 function showHideDataInputForm() {
   if (dataInputForm.style.visibility === 'visible') {``
@@ -81,6 +48,79 @@ function showHideDataInputForm() {
   dataInputForm.style.visibility = 'visible'
 }
 
+function removeBookFromShelf() {
+  
+}
+
+function changeDataOnFly() {
+  
+};
+
+
+function createBookOnShelf() {
+  n++;
+  const bookOnShelf = document.createElement('div');
+  bookShelf.appendChild(bookOnShelf);
+  bookOnShelf.classList.add(`bookOnShelf${n}`);
+  bookOnShelf.classList.add(`bookOnShelf`);
+  for (let nn = 1; nn < 10; nn++) {
+    const bookSections = document.createElement('div');
+    const dataToShow = document.createElement('p');
+    document.querySelector(`.bookOnShelf${n}`).appendChild(bookSections);
+    bookSections.classList.add(`div${nn}`);
+    document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).appendChild(dataToShow);
+    if (nn === 9) {
+      const delButton = document.createElement('button');
+      const mdfyButton = document.createElement('button');
+      document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).appendChild(delButton).innerText = 'DEL';
+      document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).appendChild(mdfyButton).innerText = 'MDFY';
+      let nOfBtns = 0;
+      document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).querySelectorAll('button').forEach((btns) => {
+        btns.classList.add(`bookButtons${nOfBtns}`);
+        nOfBtns++;
+      });
+    };
+    dataToShow.classList.add(`p${nn}`);
+    dataToShow.classList.add(`bookOnShelf${n}`);
+  };
+  document.querySelectorAll('p').forEach((ps) => {
+    if (ps.classList.contains('p1') && ps.classList.contains(`bookOnShelf${n}`)) {
+      ps.innerText = library[`${n}`].author;
+    } else if (ps.classList.contains('p2') && ps.classList.contains(`bookOnShelf${n}`)) {
+      ps.innerText = library[`${n}`].title;
+    } else if (ps.classList.contains('p3') && ps.classList.contains(`bookOnShelf${n}`)) {
+      ps.innerText = library[`${n}`].numberOfPages;
+    } else if (ps.classList.contains('p4') && ps.classList.contains(`bookOnShelf${n}`)) {
+      ps.innerText = library[`${n}`].centuryOfPrint;
+    }  else if (ps.classList.contains('p5') && ps.classList.contains(`bookOnShelf${n}`)) {
+      ps.innerText = library[`${n}`].printingPress;
+    } else if (ps.classList.contains('p6') && ps.classList.contains(`bookOnShelf${n}`)) {
+      ps.innerText = library[`${n}`].haveYouReadItYet;
+    } else if (ps.classList.contains('p7') && ps.classList.contains(`bookOnShelf${n}`)) {
+      ps.innerText = library[`${n}`].isItCute;
+    } else if (ps.classList.contains('p8') && ps.classList.contains(`bookOnShelf${n}`)) {
+      ps.innerText = library[`${n}`].isThereACats;
+    };
+  });
+};
+
+function addBookToShelf() {
+  const authorName = document.querySelector('#authorName');
+  const bookName = document.querySelector('#bookName');
+  const nrOfPages = document.querySelector('#nrOfPages');
+  const centuryOfPrint = document.querySelector('#centuryOfPrint');
+  const pressType = document.querySelector('#pressType');
+  const readStatus = document.querySelector('input[name="read"]:checked');
+  const cutnessStatus = document.querySelector('input[name="cute"]:checked');
+  const catnessStatus = document.querySelector('input[name="cat"]:checked');
+  
+  const book = new Book(`${authorName.value}`, `${bookName.value}`, `${nrOfPages.value}`, `${centuryOfPrint.value}`, `${pressType.value}`, `${readStatus.value}`, `${cutnessStatus.value}`, `${catnessStatus.value}`);
+  library.push(book);
+  createBookOnShelf();
+
+  form.reset();
+};
+
 function inputDataToLibrary() {
   const authorName = document.querySelector('#authorName');
   const bookName = document.querySelector('#bookName');
@@ -99,6 +139,9 @@ function inputDataToLibrary() {
 document.querySelector('.addBookButton').addEventListener('click', showHideDataInputForm);
 document.querySelector('.submitButton').addEventListener('click', inputDataToLibrary);
 document.querySelector('.submitButton').addEventListener('click', showHideDataInputForm);
+document.querySelector('.bookButtons0').addEventListener('click', changeDataOnFly);
+document.querySelector('.bookButtons1').addEventListener('click', removeBookFromShelf);
+
 
 /*
 TODO:

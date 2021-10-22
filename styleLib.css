@@ -117,15 +117,16 @@ p {
 }
 
 .bookShelf {
-  position: static;
   display: grid;
-  justify-content: center;
+  justify-content: start;
   align-items: stretch;
   align-self: center;  
   align-content: stretch;
   grid-template-columns: repeat(1, 1fr);
   gap: 5px 0px;
-  bottom: 6.5%;
+  max-height: 70vh;
+  overflow: scroll;
+  margin-bottom: 6.5%;
   text-shadow: 2px 2px 4px rgb(255, 0, 0);
   border: 5px outset black;
   background-color: rgb(49, 49, 49);
@@ -136,11 +137,32 @@ p {
 
 .bookOnShelf {
   display: flex;
-  position: static;
   align-items: center;
   flex-direction: row;
-  border: 5px outset purple;
-  min-width: 250px;
+  border: 3px solid black;
   margin: 0;
-  font-size: 2rem;
+  font-size: 0.8rem;
+}
+
+.div1,
+.div2,
+.div3,
+.div4,
+.div5,
+.div6,
+.div7,
+.div8,
+.div9 {
+  border: 2px solid green;
+  margin-left: 5px;
+  padding: 5px;
+}
+
+.bookButtons0,
+.bookButtons1 {
+  border: 2px solid green;
+  margin-left: 5px;
+  padding: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
