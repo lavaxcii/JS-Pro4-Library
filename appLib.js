@@ -48,12 +48,19 @@ function showHideDataInputForm() {
   dataInputForm.style.visibility = 'visible'
 }
 
-function removeBookFromShelf() {
-  
-}
+// function removeBookFromShelf() {
 
-function changeDataOnFly() {
-  
+// }
+
+function changeDataOnFly(clicked) {
+  showHideDataInputForm();
+  console.log(clicked);  
+  // dodaj buttom mdfy pored submita i onda napravi da
+  // kada se stisne plus da pointer events za mdfy budu
+  // iskopčani a kada se stisne mdfy na knjizi da se
+  // pojavi opet data form ali ovaj puta pointer events
+  // iskopčani za submit
+  // TA-DA! :3
 };
 
 
@@ -101,6 +108,7 @@ function createBookOnShelf() {
     } else if (ps.classList.contains('p8') && ps.classList.contains(`bookOnShelf${n}`)) {
       ps.innerText = library[`${n}`].isThereACats;
     };
+    activateDelMdfyBtns();
   });
 };
 
@@ -139,8 +147,11 @@ function inputDataToLibrary() {
 document.querySelector('.addBookButton').addEventListener('click', showHideDataInputForm);
 document.querySelector('.submitButton').addEventListener('click', inputDataToLibrary);
 document.querySelector('.submitButton').addEventListener('click', showHideDataInputForm);
-document.querySelector('.bookButtons0').addEventListener('click', changeDataOnFly);
-document.querySelector('.bookButtons1').addEventListener('click', removeBookFromShelf);
+
+function activateDelMdfyBtns() {
+  // document.querySelector('.bookButtons0').addEventListener('click', removeBookFromShelf);
+  document.querySelector('.bookButtons1').addEventListener('click', changeDataOnFly);
+};
 
 
 /*
