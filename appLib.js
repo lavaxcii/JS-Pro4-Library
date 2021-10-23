@@ -30,7 +30,7 @@ const dataInputForm = document.querySelector('.dataInputForm');
 const form = document.querySelector('form');
 let n = -1;
 
-function showHideDataInputForm() {
+function showHideDataInputForm(clicked) {
   if (dataInputForm.style.visibility === 'visible') {``
     if (authorName.value === '' || bookName.value === '' || nrOfPages.value === '' || centuryOfPrint.value === '' || pressType.value === '') {
       console.log('fak no')
@@ -43,25 +43,28 @@ function showHideDataInputForm() {
       return;
     };
   };
+  // if (clicked.target.classList.contains('bookButtons1')) {
+  //   document.querySelector('.submitButton').style.pointerEvents = 'none';
+  //   document.querySelector('.modifyButton').style.pointerEvents = 'auto';
+  // } else if (clicked.target.classList.contains('fa-plus-circle')) {
+  //   document.querySelector('.submitButton').style.pointerEvents = 'auto';
+  //   document.querySelector('.modifyButton').style.pointerEvents = 'none';
+  // };
   addBookIcon.style.fontSize = '0rem';
   addBookDiv.style.visibility = 'hidden';
   dataInputForm.style.visibility = 'visible'
 }
 
-// function removeBookFromShelf() {
+function removeBookFromShelf(clicked) {
+  clicked.srcElement.parentElement.parentElement.remove();
+  console.log(clicked.srcElement.parentElement.parentElement);
+}
 
-// }
-
-function changeDataOnFly(clicked) {
-  showHideDataInputForm();
-  console.log(clicked);  
-  // dodaj buttom mdfy pored submita i onda napravi da
-  // kada se stisne plus da pointer events za mdfy budu
-  // iskopčani a kada se stisne mdfy na knjizi da se
-  // pojavi opet data form ali ovaj puta pointer events
-  // iskopčani za submit
-  // TA-DA! :3
-};
+// function changeDataOnFly(clicked) {
+//   showHideDataInputForm(clicked);
+//   console.log(clicked.srcElement.parentElement.parentElement);
+  
+// };
 
 
 function createBookOnShelf() {
@@ -75,12 +78,12 @@ function createBookOnShelf() {
     const dataToShow = document.createElement('p');
     document.querySelector(`.bookOnShelf${n}`).appendChild(bookSections);
     bookSections.classList.add(`div${nn}`);
-    document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).appendChild(dataToShow);
+    document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).appendChild(dataToShow); 
     if (nn === 9) {
       const delButton = document.createElement('button');
-      const mdfyButton = document.createElement('button');
+      // const mdfyButton = document.createElement('button');
       document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).appendChild(delButton).innerText = 'DEL';
-      document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).appendChild(mdfyButton).innerText = 'MDFY';
+      // document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).appendChild(mdfyButton).innerText = 'MDFY';
       let nOfBtns = 0;
       document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).querySelectorAll('button').forEach((btns) => {
         btns.classList.add(`bookButtons${nOfBtns}`);
@@ -89,24 +92,37 @@ function createBookOnShelf() {
     };
     dataToShow.classList.add(`p${nn}`);
     dataToShow.classList.add(`bookOnShelf${n}`);
+    document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).querySelector('p').setAttribute('contenteditable', 'true');
   };
   document.querySelectorAll('p').forEach((ps) => {
     if (ps.classList.contains('p1') && ps.classList.contains(`bookOnShelf${n}`)) {
-      ps.innerText = library[`${n}`].author;
+      ps.innerText = 'Author ' + library[`${n}`].author;
     } else if (ps.classList.contains('p2') && ps.classList.contains(`bookOnShelf${n}`)) {
-      ps.innerText = library[`${n}`].title;
+      ps.innerText = 'wrote ' + library[`${n}`].title;
     } else if (ps.classList.contains('p3') && ps.classList.contains(`bookOnShelf${n}`)) {
-      ps.innerText = library[`${n}`].numberOfPages;
+      ps.innerText = library[`${n}`].numberOfPages + ' pages';
     } else if (ps.classList.contains('p4') && ps.classList.contains(`bookOnShelf${n}`)) {
-      ps.innerText = library[`${n}`].centuryOfPrint;
+      ps.innerText = library[`${n}`].centuryOfPrint + '.century';
     }  else if (ps.classList.contains('p5') && ps.classList.contains(`bookOnShelf${n}`)) {
-      ps.innerText = library[`${n}`].printingPress;
+      ps.innerText = library[`${n}`].printingPress + ' method';
     } else if (ps.classList.contains('p6') && ps.classList.contains(`bookOnShelf${n}`)) {
-      ps.innerText = library[`${n}`].haveYouReadItYet;
+      if (library[`${n}`].haveYouReadItYet === 'true') {
+        ps.innerText = 'I read it';
+      } else {
+        ps.innerText = 'I have not read it';
+      };
     } else if (ps.classList.contains('p7') && ps.classList.contains(`bookOnShelf${n}`)) {
-      ps.innerText = library[`${n}`].isItCute;
+      if (library[`${n}`].isItCute === 'true') {
+        ps.innerText = 'Yes, it is cute';
+      } else {
+        ps.innerText = 'No, it is not cute';
+      };
     } else if (ps.classList.contains('p8') && ps.classList.contains(`bookOnShelf${n}`)) {
-      ps.innerText = library[`${n}`].isThereACats;
+      if (library[`${n}`].isThereACats === 'true') {
+        ps.innerText = 'Yes, there are cats';
+      } else {
+        ps.innerText = 'No, there are no cats';
+      };
     };
     activateDelMdfyBtns();
   });
@@ -149,8 +165,10 @@ document.querySelector('.submitButton').addEventListener('click', inputDataToLib
 document.querySelector('.submitButton').addEventListener('click', showHideDataInputForm);
 
 function activateDelMdfyBtns() {
-  // document.querySelector('.bookButtons0').addEventListener('click', removeBookFromShelf);
-  document.querySelector('.bookButtons1').addEventListener('click', changeDataOnFly);
+  document.querySelectorAll('.bookButtons0').forEach((dels) => {
+    dels.addEventListener('click', removeBookFromShelf);
+  });
+  // document.querySelector('.bookButtons1').addEventListener('click', changeDataOnFly);
 };
 
 

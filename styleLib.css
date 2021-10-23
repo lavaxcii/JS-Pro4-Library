@@ -117,6 +117,20 @@ p {
   cursor: pointer;
 }
 
+.modifyButton {
+  margin-top: 35px;
+  margin-left: 10px;
+  padding: 5px;
+  appearance: none;
+  outline: none;
+  text-align: center;
+  border: 2px outset rgb(195, 0, 255);
+  border-radius: 20px;
+  background-color: rgb(65, 65, 65);
+  color: white;
+  cursor: pointer;
+}
+
 .bookShelf {
   display: grid;
   justify-content: start;
@@ -142,7 +156,7 @@ p {
   flex-direction: row;
   border: 3px solid black;
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 .div1,
@@ -157,6 +171,9 @@ p {
   border: 2px solid green;
   margin-left: 5px;
   padding: 5px;
+  max-width: 120px;
+  text-align: center;
+
 }
 
 .bookButtons0,
@@ -164,6 +181,6 @@ p {
   border: 2px solid green;
   margin-left: 5px;
   padding: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   cursor: pointer;
 }
