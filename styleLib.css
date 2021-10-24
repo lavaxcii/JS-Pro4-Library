@@ -1,5 +1,6 @@
 * {
   transition: 0.3s ease;
+  font-size: 1rem;
 }
 
 body {
@@ -16,18 +17,19 @@ body {
   background-attachment: fixed;
   background-position: 50% 0%;
   margin: 0;
-  font-family: 'Press Start 2P';
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .dataInputForm {
   display: flex;
   position: static;
   flex-direction: column;
+  text-align: center;
   text-shadow: 2px 2px 4px rgb(255, 0, 0);
   border: 5px outset black;
   background-color: rgb(49, 49, 49);
   color: rgb(255, 255, 255);
-  font-size: 0.8rem;
+  font-size: 1rem;
   visibility: hidden;
   margin-left: 5vw;
 }
@@ -110,11 +112,12 @@ p {
   appearance: none;
   outline: none;
   text-align: center;
-  border: 2px outset rgb(255, 153, 0);
+  border: 5px outset rgb(142, 142, 255);
   border-radius: 20px;
-  background-color: rgb(65, 65, 65);
-  color: white;
+  color: black;
   cursor: pointer;
+  text-shadow: 1px 2px 2px white;
+  background-color: white;
 }
 
 .modifyButton {
@@ -131,6 +134,17 @@ p {
   cursor: pointer;
 }
 
+.bookShelfMessage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  border-bottom: 5px dotted gray;
+  font-weight: 1000;
+  transition: 0.5s ease;
+}
+
 .bookShelf {
   display: grid;
   justify-content: start;
@@ -143,8 +157,6 @@ p {
   overflow: scroll;
   margin-bottom: 6.5%;
   text-shadow: 2px 2px 4px rgb(255, 0, 0);
-  border: 5px outset black;
-  background-color: rgb(49, 49, 49);
   color: rgb(255, 255, 255);
   font-size: 0.8rem;
   margin-left: 5vw;
@@ -154,7 +166,6 @@ p {
   display: flex;
   align-items: center;
   flex-direction: row;
-  border: 3px solid black;
   margin: 0;
   font-size: 0.75rem;
 }
@@ -168,19 +179,37 @@ p {
 .div7,
 .div8,
 .div9 {
-  border: 2px solid green;
   margin-left: 5px;
+  border-left: 5px dotted gray;
   padding: 5px;
   max-width: 120px;
   text-align: center;
+  word-wrap: break-word;
+}
+
+.p1,
+.p2,
+.p3,
+.p4,
+.p5,
+.p6,
+.p7,
+.p8,
+.p9 {
 
 }
 
 .bookButtons0,
 .bookButtons1 {
-  border: 2px solid green;
+  color: black;
+  font-size: 1.5rem;
+  background-color: pink;
+  border: 5px outset rgb(142, 142, 255);
   margin-left: 5px;
   padding: 5px;
   margin-bottom: 20px;
   cursor: pointer;
+  text-shadow: 1px 2px 2px white;
+  box-shadow: 0px 0px 10px 5px red;
+
 }

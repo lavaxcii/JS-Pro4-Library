@@ -93,6 +93,7 @@ function createBookOnShelf() {
     dataToShow.classList.add(`p${nn}`);
     dataToShow.classList.add(`bookOnShelf${n}`);
     document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).querySelector('p').setAttribute('contenteditable', 'true');
+    document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).querySelector('p').setAttribute('onkeypress', 'return (this.innerText.length <= 35)');
   };
   document.querySelectorAll('p').forEach((ps) => {
     if (ps.classList.contains('p1') && ps.classList.contains(`bookOnShelf${n}`)) {
@@ -151,18 +152,38 @@ function inputDataToLibrary() {
   const nrOfPages = document.querySelector('#nrOfPages');
   const centuryOfPrint = document.querySelector('#centuryOfPrint');
   const pressType = document.querySelector('#pressType');
-  if (dataInputForm.style.visibility === 'visible' && (authorName.value === '' || bookName.value === '' || nrOfPages.value === '' || centuryOfPrint.value === '' || pressType.value === '')) {
+  if (dataInputForm.style.visibility === 'visible' && (authorName.value === '' || bookName.value === '' || nrOfPages.value === '' || centuryOfPrint.value === '' || pressType.value === '' || authorName.value === ' ' || bookName.value === ' ' || nrOfPages.value === ' ' || centuryOfPrint.value === ' ' || pressType.value === ' ')) {
+    // add cases for number entries that are below or
+    // min max value!
     console.log(false);
     return;
   } else {
     console.log(true);
+    showHideDataInputForm();
     addBookToShelf();
   };
 };
 
+const bookShelfMessage = document.querySelector('.bookShelfMessage');
+function rotateMessageColors() {
+  function rgbRng() {
+    let randomRgbNr = Math.floor(Math.random() * 255) + 0;
+    return randomRgbNr;
+  };
+  let rgb1 = rgbRng();
+  let rgb2 = rgbRng();
+  let rgb3 = rgbRng();
+  setTimeout(() => {
+    bookShelfMessage.style.color = `rgb(${rgb1}, ${rgb2}, ${rgb3}`;
+  }, 5500);
+  setTimeout(() => {
+    rotateMessageColors();
+  }, 5500);
+}
+rotateMessageColors();
+
 document.querySelector('.addBookButton').addEventListener('click', showHideDataInputForm);
 document.querySelector('.submitButton').addEventListener('click', inputDataToLibrary);
-document.querySelector('.submitButton').addEventListener('click', showHideDataInputForm);
 
 function activateDelMdfyBtns() {
   document.querySelectorAll('.bookButtons0').forEach((dels) => {
@@ -182,17 +203,17 @@ to stisne bilo bi dobro da unutar toga okvira se ponudi
 useru da unese putem inputa i buttona sve potrebne
 podatke za knjigu.
 TODO
--- 2 -- TYPE OD DATA THAT USER WILL INPUT
+-- 2 -- TYPE OD DATA THAT USER WILL INPUT ++
 Iz navedenoga se vidi da imamo: string, string, nr, nr,
 string, bol, bol i bol.
 TODO
--- 3 -- SUGGESTED WAY OF INPUTING DATA 1/2+
+-- 3 -- SUGGESTED WAY OF INPUTING DATA ++
 To bi valjalo unjeti na način: inp, inp, inpNr, inpNr,
 inp, button, button, buttona.
 Potom neki kao submit/done i onda se to slaže ili
 horizontalno ili vertikalno.
 TODO
--- 4 -- HOW TO MAKE BOOKS DATA (NON)VISIBLE
+-- 4 -- HOW TO MAKE BOOKS DATA (NON)VISIBLE ++
 Ako si želim OLAKŠATI onda bi valjalo da se na hover
 ili klik 'otvori' knjiga i da se vide podaci ili još
 LAKŠE da nema toga već da jednostavno su uvijek vidljivi.
@@ -200,19 +221,20 @@ Nadalje, kada se stavi prva knjiga onda se nudi isti
 takav okvir (ali manji) za daljnje slaganje u horizontali ili
 vertikali (koji se uveća za unos).
 TODO
--- 5 -- GIVING USER POSSIBILITY TO REARRANGE BOOKS
+-- 5 -- GIVING USER POSSIBILITY TO REARRANGE BOOKS --
 Mogao bi biti LUD i napraviti da se može
 preslagati redosljed knjiga! :D Oo!?! Ili na naćin da
 ide po propertisima ili da se jednostavno može kao
 'prevući' mišem na višlje ili niže mjesto. Će da se
 razmislim o tome.
 TODO
--- 6 -- REMOVE BUTTON NEEDED
+-- 6 -- REMOVE BUTTON NEEDED ++
 Zadatak traži da se doda i remove button.
 TODO
--- 7 -- USER CAN CHANGE READ STATUS ON FLY
+-- 7 -- USER CAN CHANGE READ STATUS ON FLY ++
 Također, traži se mogućnost promjene read statusa i
 nakon unosa!
++ Added option to modify all data
 TODO
 -- 8 -- SAVING DATA TO LOCAL STORAGE
 Dodatno, valja napraviti da se library array spremi na
