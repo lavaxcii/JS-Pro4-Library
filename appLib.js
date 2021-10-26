@@ -1,6 +1,7 @@
 let library = [];
 
-function Book(author, title, numberOfPages, centuryOfPrint, printingPress, haveYouReadItYet, isItCute, isThereACats) {
+function Book(id, author, title, numberOfPages, centuryOfPrint, printingPress, haveYouReadItYet, isItCute, isThereACats) {
+  this.id = id
   this.author = author
   this.title = title
   this.numberOfPages = numberOfPages
@@ -57,7 +58,57 @@ function showHideDataInputForm(clicked) {
 
 function removeBookFromShelf(clicked) {
   clicked.srcElement.parentElement.parentElement.remove();
-  console.log(clicked.srcElement.parentElement.parentElement);
+  const dataIdDiv = clicked.srcElement.parentElement.parentElement.getAttribute('data-id');
+  library.forEach((books) => {
+    if (dataIdDiv === books.id) {
+      library.splice(`${library.indexOf(books)}`, 1);
+    } else {
+      return;
+    };
+  });
+};
+
+function changeRCCStatus(clicked) {
+  console.log(clicked.srcElement.parentElement.classList);
+  let dataIdDiv = clicked.srcElement.parentElement.parentElement.getAttribute('data-id');
+  let clickedDiv = clicked.srcElement.parentElement;
+  library.forEach((books) => {
+    if (dataIdDiv === books.id) {
+      if (library[library.indexOf(books)].haveYouReadItYet === 'true' && clickedDiv.classList.contains('div6')) {
+        library[library.indexOf(books)].readStatus('false');
+        console.log('lib readStatus to FALSE!')
+        clickedDiv.querySelector('.p6').innerText = 'I have not read it';
+        console.log('reading p change!');
+        return;
+      } else if (library[library.indexOf(books)].haveYouReadItYet === 'false' && clickedDiv.classList.contains('div6')) {
+        library[library.indexOf(books)].readStatus('true');
+        console.log('lib readStatus to TRUE')
+        clickedDiv.querySelector('.p6').innerText = 'I have read it';
+        console.log('reading p change!')
+        return;
+      } else if (library[library.indexOf(books)].isItCute === 'true' && clickedDiv.classList.contains('div7')) {
+        library[library.indexOf(books)].cutnessStatus('false');
+        console.log('cutness lib to FALSE!')
+        clickedDiv.querySelector('.p7').innerText = 'No, it is not cute!';
+        console.log('cutness p change!')
+      } else if (library[library.indexOf(books)].isItCute === 'false' && clickedDiv.classList.contains('div7')) {
+        library[library.indexOf(books)].cutnessStatus('true');
+        console.log('cutness lib to TRUE!')
+        clickedDiv.querySelector('.p7').innerText = 'Yes, it is cute';
+        console.log('cutness p change!')
+      } else if (library[library.indexOf(books)].isThereACats === 'true' && clickedDiv.classList.contains('div8')) {
+        library[library.indexOf(books)].catnessStatus('false');
+        console.log('catness lib to FALSE!')
+        clickedDiv.querySelector('.p8').innerText = 'No, there are no cats';
+        console.log('catness p change!')
+      } else if (library[library.indexOf(books)].isThereACats === 'false' && clickedDiv.classList.contains('div8')) {
+        library[library.indexOf(books)].catnessStatus('true');
+        console.log('catness lib to TRUE!')
+        clickedDiv.querySelector('.p8').innerText = 'Yes, there are cats';
+        console.log('catness p change!')
+      }
+    };
+  });
 }
 
 // function changeDataOnFly(clicked) {
@@ -68,58 +119,62 @@ function removeBookFromShelf(clicked) {
 
 
 function createBookOnShelf() {
-  n++;
   const bookOnShelf = document.createElement('div');
   bookShelf.appendChild(bookOnShelf);
   bookOnShelf.classList.add(`bookOnShelf${n}`);
   bookOnShelf.classList.add(`bookOnShelf`);
+  bookOnShelf.setAttribute('data-id', `${n}`);
   for (let nn = 1; nn < 10; nn++) {
     const bookSections = document.createElement('div');
     const dataToShow = document.createElement('p');
     document.querySelector(`.bookOnShelf${n}`).appendChild(bookSections);
     bookSections.classList.add(`div${nn}`);
-    document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).appendChild(dataToShow); 
-    if (nn === 9) {
-      const delButton = document.createElement('button');
-      // const mdfyButton = document.createElement('button');
-      document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).appendChild(delButton).innerText = 'DEL';
-      // document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).appendChild(mdfyButton).innerText = 'MDFY';
-      let nOfBtns = 0;
-      document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).querySelectorAll('button').forEach((btns) => {
-        btns.classList.add(`bookButtons${nOfBtns}`);
-        nOfBtns++;
-      });
-    };
+    document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).appendChild(dataToShow);
+    let nOfBtns = 0;
+    const delButton = document.createElement('button');
+    const inputButtons = document.createElement('button');
     dataToShow.classList.add(`p${nn}`);
     dataToShow.classList.add(`bookOnShelf${n}`);
     document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).querySelector('p').setAttribute('contenteditable', 'true');
     document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).querySelector('p').setAttribute('onkeypress', 'return (this.innerText.length <= 35)');
+    if (nn > 5 && nn < 9) {
+      document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).appendChild(inputButtons).innerText = 'MDF';
+      document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).querySelector('p').setAttribute('contenteditable', 'false');
+    } else if (nn === 9) {
+      // const mdfyButton = document.createElement('button');
+      document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).appendChild(delButton).innerText = 'DEL';
+      // document.querySelector(`.bookOnShelf${n}`).querySelector(`.div${nn}`).appendChild(mdfyButton).innerText = 'MDFY';
+      document.querySelector(`.bookOnShelf${n}`).querySelectorAll('button').forEach((btns) => {
+        btns.classList.add(`bookButtons${nOfBtns}`);
+        nOfBtns++;
+      });
+    };
   };
   document.querySelectorAll('p').forEach((ps) => {
     if (ps.classList.contains('p1') && ps.classList.contains(`bookOnShelf${n}`)) {
-      ps.innerText = 'Author ' + library[`${n}`].author;
+      ps.innerText = 'Author ' + library[`${library.length - 1}`].author;
     } else if (ps.classList.contains('p2') && ps.classList.contains(`bookOnShelf${n}`)) {
-      ps.innerText = 'wrote ' + library[`${n}`].title;
+      ps.innerText = 'wrote ' + library[`${library.length - 1}`].title;
     } else if (ps.classList.contains('p3') && ps.classList.contains(`bookOnShelf${n}`)) {
-      ps.innerText = library[`${n}`].numberOfPages + ' pages';
+      ps.innerText = library[`${library.length - 1}`].numberOfPages + ' pages';
     } else if (ps.classList.contains('p4') && ps.classList.contains(`bookOnShelf${n}`)) {
-      ps.innerText = library[`${n}`].centuryOfPrint + '.century';
+      ps.innerText = library[`${library.length - 1}`].centuryOfPrint + '.century';
     }  else if (ps.classList.contains('p5') && ps.classList.contains(`bookOnShelf${n}`)) {
-      ps.innerText = library[`${n}`].printingPress + ' method';
+      ps.innerText = library[`${library.length - 1}`].printingPress + ' method';
     } else if (ps.classList.contains('p6') && ps.classList.contains(`bookOnShelf${n}`)) {
-      if (library[`${n}`].haveYouReadItYet === 'true') {
-        ps.innerText = 'I read it';
+      if (library[`${library.length - 1}`].haveYouReadItYet === 'true') {
+        ps.innerText = 'I have read it';
       } else {
         ps.innerText = 'I have not read it';
       };
     } else if (ps.classList.contains('p7') && ps.classList.contains(`bookOnShelf${n}`)) {
-      if (library[`${n}`].isItCute === 'true') {
+      if (library[`${library.length - 1}`].isItCute === 'true') {
         ps.innerText = 'Yes, it is cute';
       } else {
-        ps.innerText = 'No, it is not cute';
+        ps.innerText = 'No, it is not cute!';
       };
     } else if (ps.classList.contains('p8') && ps.classList.contains(`bookOnShelf${n}`)) {
-      if (library[`${n}`].isThereACats === 'true') {
+      if (library[`${library.length - 1}`].isThereACats === 'true') {
         ps.innerText = 'Yes, there are cats';
       } else {
         ps.innerText = 'No, there are no cats';
@@ -130,6 +185,7 @@ function createBookOnShelf() {
 };
 
 function addBookToShelf() {
+  n++;
   const authorName = document.querySelector('#authorName');
   const bookName = document.querySelector('#bookName');
   const nrOfPages = document.querySelector('#nrOfPages');
@@ -139,7 +195,7 @@ function addBookToShelf() {
   const cutnessStatus = document.querySelector('input[name="cute"]:checked');
   const catnessStatus = document.querySelector('input[name="cat"]:checked');
   
-  const book = new Book(`${authorName.value}`, `${bookName.value}`, `${nrOfPages.value}`, `${centuryOfPrint.value}`, `${pressType.value}`, `${readStatus.value}`, `${cutnessStatus.value}`, `${catnessStatus.value}`);
+  const book = new Book(`${n}`, `${authorName.value}`, `${bookName.value}`, `${nrOfPages.value}`, `${centuryOfPrint.value}`, `${pressType.value}`, `${readStatus.value}`, `${cutnessStatus.value}`, `${catnessStatus.value}`);
   library.push(book);
   createBookOnShelf();
 
@@ -153,8 +209,6 @@ function inputDataToLibrary() {
   const centuryOfPrint = document.querySelector('#centuryOfPrint');
   const pressType = document.querySelector('#pressType');
   if (dataInputForm.style.visibility === 'visible' && (authorName.value === '' || bookName.value === '' || nrOfPages.value === '' || centuryOfPrint.value === '' || pressType.value === '' || authorName.value === ' ' || bookName.value === ' ' || nrOfPages.value === ' ' || centuryOfPrint.value === ' ' || pressType.value === ' ')) {
-    // add cases for number entries that are below or
-    // min max value!
     console.log(false);
     return;
   } else {
@@ -187,6 +241,15 @@ document.querySelector('.submitButton').addEventListener('click', inputDataToLib
 
 function activateDelMdfyBtns() {
   document.querySelectorAll('.bookButtons0').forEach((dels) => {
+    dels.addEventListener('click', changeRCCStatus);
+  });
+  document.querySelectorAll('.bookButtons1').forEach((dels) => {
+    dels.addEventListener('click', changeRCCStatus);
+  });
+  document.querySelectorAll('.bookButtons2').forEach((dels) => {
+    dels.addEventListener('click', changeRCCStatus);
+  });
+  document.querySelectorAll('.bookButtons3').forEach((dels) => {
     dels.addEventListener('click', removeBookFromShelf);
   });
   // document.querySelector('.bookButtons1').addEventListener('click', changeDataOnFly);
