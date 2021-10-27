@@ -280,7 +280,8 @@ function restoreLibraryFromLocal() {
       });
       createBookOnShelf();
     };
-    parseInt(n++);
+    parseInt(n);
+    n++;
   };
 };
 restoreLibraryFromLocal();
