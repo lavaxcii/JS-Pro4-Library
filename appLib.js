@@ -61,11 +61,12 @@ function removeBookFromShelf(clicked) {
   const dataIdDiv = clicked.srcElement.parentElement.parentElement.getAttribute('data-id');
   library.forEach((books) => {
     if (dataIdDiv === books.id) {
-      library.splice(`${library.indexOf(books)}`, 1);
+      library.splice(`${library.indexOf(books)}`, 1);      
     } else {
       return;
     };
   });
+  localStorage.removeItem(`${dataIdDiv}`);
 };
 
 function changeRCCStatus(clicked) {
@@ -197,6 +198,7 @@ function addBookToShelf() {
   
   const book = new Book(`${n}`, `${authorName.value}`, `${bookName.value}`, `${nrOfPages.value}`, `${centuryOfPrint.value}`, `${pressType.value}`, `${readStatus.value}`, `${cutnessStatus.value}`, `${catnessStatus.value}`);
   library.push(book);
+  localStorage.setItem(`${n}`, JSON.stringify(library[`${library.length - 1}`]));
   createBookOnShelf();
 
   form.reset();
@@ -255,6 +257,18 @@ function activateDelMdfyBtns() {
   // document.querySelector('.bookButtons1').addEventListener('click', changeDataOnFly);
 };
 
+function restoreLibraryFromLocal() {
+  if (localStorage.length === 0) {
+    return;
+  } else {
+    for (let i = 0; i < localStorage.length; i++) {
+      n = localStorage.key(`${i}`);
+      library.push(JSON.parse(localStorage.getItem(`${n}`)));
+      createBookOnShelf();
+    };
+  };
+};
+restoreLibraryFromLocal();
 
 /*
 TODO:
@@ -302,4 +316,13 @@ TODO
 -- 8 -- SAVING DATA TO LOCAL STORAGE
 Dodatno, valja napraviti da se library array spremi na
 local storage (v. zadatak za još detalja)
+  8.1 prvo skontaj da uspješno spremiš sve key/values
+  na local
+  8.2 potom da ih retrievaš i da se prikažu useru bez
+  problema
+  8.3 kad to bude uspješno onda iskemijati kako
+  'spremit' i 'vratiti' metode koje imaš (sve tri) jer
+  tehnički ne možeš spremati metode samo propertise,
+  dakle to doslovno treba hakovati na neki način :\
+  8.4 glhf XDD
 */
