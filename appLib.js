@@ -108,9 +108,10 @@ function changeRCCStatus(clicked) {
         clickedDiv.querySelector('.p8').innerText = 'Yes, there are cats';
         console.log('catness p change!')
       }
+      localStorage.setItem(`${dataIdDiv}`, JSON.stringify(library[library.indexOf(books)]));
     };
   });
-}
+};
 
 // function changeDataOnFly(clicked) {
 //   showHideDataInputForm(clicked);
@@ -264,6 +265,17 @@ function restoreLibraryFromLocal() {
     for (let i = 0; i < localStorage.length; i++) {
       n = localStorage.key(`${i}`);
       library.push(JSON.parse(localStorage.getItem(`${n}`)));
+      Object.setPrototypeOf(library[`${i}`], {
+        readStatus: function(status) {
+          return this.haveYouReadItYet = status
+        },
+        cutnessStatus: function(status) {
+          return this.isItCute = status
+        },
+        catnessStatus: function(status) {
+          return this.isThereACats = status
+        }
+      });
       createBookOnShelf();
     };
   };
