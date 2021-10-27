@@ -187,9 +187,7 @@ function createBookOnShelf() {
 };
 
 function addBookToShelf() {
-  console.log(`n before is ${n}`);
   n++;
-  console.log(`n AFTER is ${n}`);
   const authorName = document.querySelector('#authorName');
   const bookName = document.querySelector('#bookName');
   const nrOfPages = document.querySelector('#nrOfPages');
@@ -280,8 +278,8 @@ function restoreLibraryFromLocal() {
       });
       createBookOnShelf();
     };
-    parseInt(n);
-    n++;
+    n = library[0].id
+    n = parseInt(n);
   };
 };
 restoreLibraryFromLocal();
