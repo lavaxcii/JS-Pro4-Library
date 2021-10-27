@@ -1,6 +1,6 @@
 JavaScript project. 
 
-Library. Final build. 
+Library. Final build.<br /> 
 
 Update<br />
 1.1<br />
