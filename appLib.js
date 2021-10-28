@@ -80,13 +80,11 @@ function changeRCCStatus(clicked) {
         console.log('lib readStatus to FALSE!')
         clickedDiv.querySelector('.p6').innerText = 'I have not read it';
         console.log('reading p change!');
-        return;
       } else if (library[library.indexOf(books)].haveYouReadItYet === 'false' && clickedDiv.classList.contains('div6')) {
         library[library.indexOf(books)].readStatus('true');
         console.log('lib readStatus to TRUE')
         clickedDiv.querySelector('.p6').innerText = 'I have read it';
         console.log('reading p change!')
-        return;
       } else if (library[library.indexOf(books)].isItCute === 'true' && clickedDiv.classList.contains('div7')) {
         library[library.indexOf(books)].cutnessStatus('false');
         console.log('cutness lib to FALSE!')
@@ -108,6 +106,7 @@ function changeRCCStatus(clicked) {
         clickedDiv.querySelector('.p8').innerText = 'Yes, there are cats';
         console.log('catness p change!')
       }
+      console.log('Now i change local!')
       localStorage.setItem(`${dataIdDiv}`, JSON.stringify(library[library.indexOf(books)]));
     };
   });
@@ -278,8 +277,10 @@ function restoreLibraryFromLocal() {
       });
       createBookOnShelf();
     };
-    n = library[0].id
-    n = parseInt(n);
+    n = parseInt(library[0].id) + 1;
   };
 };
 restoreLibraryFromLocal();
+
+//* Add favicon, change title, maybe add some styling
+//*  to deletion and/or bookshelf background
