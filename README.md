@@ -1,6 +1,8 @@
 JavaScript project. 
 
-Library. Final build.<br /> 
+Library. Final build.<br />
+Background image from Pexels(pexels.com).
+Light Bulb Beside Books on Shelf by Engin Akyurt.
 
 Update<br />
 1.1<br />

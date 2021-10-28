@@ -57,22 +57,33 @@ function showHideDataInputForm(clicked) {
 }
 
 function removeBookFromShelf(clicked) {
-  clicked.srcElement.parentElement.parentElement.remove();
-  const dataIdDiv = clicked.srcElement.parentElement.parentElement.getAttribute('data-id');
-  library.forEach((books) => {
-    if (dataIdDiv === books.id) {
-      library.splice(`${library.indexOf(books)}`, 1);      
-    } else {
-      return;
-    };
-  });
-  localStorage.removeItem(`${dataIdDiv}`);
+  const delItem = clicked.srcElement.parentElement.parentElement.classList[0];
+  document.querySelector(`.${delItem}`).style.opacity = '0';
+  
+  setTimeout(() => {
+    clicked.srcElement.parentElement.parentElement.remove();
+    const dataIdDiv = clicked.srcElement.parentElement.parentElement.getAttribute('data-id');
+    library.forEach((books) => {
+      if (dataIdDiv === books.id) {
+        library.splice(`${library.indexOf(books)}`, 1);      
+      } else {
+        return;
+      };
+    });
+    localStorage.removeItem(`${dataIdDiv}`);
+  }, 400);
 };
 
 function changeRCCStatus(clicked) {
   console.log(clicked.srcElement.parentElement.classList);
   let dataIdDiv = clicked.srcElement.parentElement.parentElement.getAttribute('data-id');
   let clickedDiv = clicked.srcElement.parentElement;
+  const mdfBtn =  clicked.target.classList[0];
+  document.querySelector(`.${mdfBtn}`).style.animationName = 'clickbtneffect';
+  document.querySelector(`.${mdfBtn}`).style.animationDuration = '0.4s';
+  setTimeout(() => {
+    document.querySelector(`.${mdfBtn}`).style.animationName = '';
+  }, 400);
   library.forEach((books) => {
     if (dataIdDiv === books.id) {
       if (library[library.indexOf(books)].haveYouReadItYet === 'true' && clickedDiv.classList.contains('div6')) {
@@ -204,7 +215,7 @@ function addBookToShelf() {
   form.reset();
 };
 
-function inputDataToLibrary() {
+function inputDataToLibrary(clicked) {
   const authorName = document.querySelector('#authorName');
   const bookName = document.querySelector('#bookName');
   const nrOfPages = document.querySelector('#nrOfPages');
@@ -217,6 +228,12 @@ function inputDataToLibrary() {
     console.log(true);
     showHideDataInputForm();
     addBookToShelf();
+    const submitBtn = clicked.target.classList[0];
+    document.querySelector(`.${submitBtn}`).style.animationName = 'clickbtneffect';
+    document.querySelector(`.${submitBtn}`).style.animationDuration = '0.4s';
+    setTimeout(() => {
+      document.querySelector(`.${submitBtn}`).style.animationName = '';
+    }, 400);
   };
 };
 
@@ -282,5 +299,5 @@ function restoreLibraryFromLocal() {
 };
 restoreLibraryFromLocal();
 
-//* Add favicon, change title, maybe add some styling
-//*  to deletion and/or bookshelf background
+//* Add favicon+, change title+, maybe add some styling
+//*  to deletion and/or bookshelf background+
