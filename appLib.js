@@ -79,10 +79,10 @@ function changeRCCStatus(clicked) {
   let dataIdDiv = clicked.srcElement.parentElement.parentElement.getAttribute('data-id');
   let clickedDiv = clicked.srcElement.parentElement;
   const mdfBtn =  clicked.target.classList[0];
-  document.querySelector(`.${mdfBtn}`).style.animationName = 'clickbtneffect';
-  document.querySelector(`.${mdfBtn}`).style.animationDuration = '0.4s';
+  clickedDiv.querySelector(`.${mdfBtn}`).style.animationName = 'clickbtneffect';
+  clickedDiv.querySelector(`.${mdfBtn}`).style.animationDuration = '0.4s';
   setTimeout(() => {
-    document.querySelector(`.${mdfBtn}`).style.animationName = '';
+    clickedDiv.querySelector(`.${mdfBtn}`).style.animationName = '';
   }, 400);
   library.forEach((books) => {
     if (dataIdDiv === books.id) {
