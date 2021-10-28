@@ -34,13 +34,11 @@ let n = -1;
 function showHideDataInputForm(clicked) {
   if (dataInputForm.style.visibility === 'visible') {``
     if (authorName.value === '' || bookName.value === '' || nrOfPages.value === '' || centuryOfPrint.value === '' || pressType.value === '') {
-      console.log('fak no')
       return;
     } else {
       addBookIcon.style.fontSize = '6rem';
       addBookDiv.style.visibility = 'visible';
       dataInputForm.style.visibility = 'hidden';
-      console.log('damn straigj nigga')
       return;
     };
   };
@@ -222,10 +220,8 @@ function inputDataToLibrary(clicked) {
   const centuryOfPrint = document.querySelector('#centuryOfPrint');
   const pressType = document.querySelector('#pressType');
   if (dataInputForm.style.visibility === 'visible' && (authorName.value === '' || bookName.value === '' || nrOfPages.value === '' || centuryOfPrint.value === '' || pressType.value === '' || authorName.value === ' ' || bookName.value === ' ' || nrOfPages.value === ' ' || centuryOfPrint.value === ' ' || pressType.value === ' ')) {
-    console.log(false);
     return;
   } else {
-    console.log(true);
     showHideDataInputForm();
     addBookToShelf();
     const submitBtn = clicked.target.classList[0];
