@@ -69,6 +69,7 @@ function removeBookFromShelf(clicked) {
       };
     });
     localStorage.removeItem(`${dataIdDiv}`);
+    console.dir(library, localStorage, n);
   }, 400);
 };
 
@@ -119,6 +120,7 @@ function changeRCCStatus(clicked) {
       localStorage.setItem(`${dataIdDiv}`, JSON.stringify(library[library.indexOf(books)]));
     };
   });
+  console.dir(library, localStorage, n);
 };
 
 // function changeDataOnFly(clicked) {
@@ -192,6 +194,7 @@ function createBookOnShelf() {
     };
     activateDelMdfyBtns();
   });
+  console.dir(library, localStorage, n);
 };
 
 function addBookToShelf() {
@@ -290,7 +293,19 @@ function restoreLibraryFromLocal() {
       });
       createBookOnShelf();
     };
-    n = parseInt(library[0].id) + 1;
+    for (let i = 1; i < library.length; i++) {
+      let n1 = parseInt(library[`${i - 1}`].id);
+      let n2 = parseInt(library[`${i}`].id);
+      let n3 = 0;
+      if (n1 > n2) {
+        n3 = n1;
+      };
+      if (n < n3) {
+        n = n3
+      };
+    };
+    n += 1;
+    console.dir(library, localStorage, n);
   };
 };
 restoreLibraryFromLocal();
