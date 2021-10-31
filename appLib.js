@@ -69,12 +69,10 @@ function removeBookFromShelf(clicked) {
       };
     });
     localStorage.removeItem(`${dataIdDiv}`);
-    console.dir(library, localStorage, n);
   }, 400);
 };
 
 function changeRCCStatus(clicked) {
-  console.log(clicked.srcElement.parentElement.classList);
   let dataIdDiv = clicked.srcElement.parentElement.parentElement.getAttribute('data-id');
   let clickedDiv = clicked.srcElement.parentElement;
   const mdfBtn =  clicked.target.classList[0];
@@ -87,45 +85,30 @@ function changeRCCStatus(clicked) {
     if (dataIdDiv === books.id) {
       if (library[library.indexOf(books)].haveYouReadItYet === 'true' && clickedDiv.classList.contains('div6')) {
         library[library.indexOf(books)].readStatus('false');
-        console.log('lib readStatus to FALSE!')
         clickedDiv.querySelector('.p6').innerText = 'I have not read it';
-        console.log('reading p change!');
       } else if (library[library.indexOf(books)].haveYouReadItYet === 'false' && clickedDiv.classList.contains('div6')) {
         library[library.indexOf(books)].readStatus('true');
-        console.log('lib readStatus to TRUE')
         clickedDiv.querySelector('.p6').innerText = 'I have read it';
-        console.log('reading p change!')
       } else if (library[library.indexOf(books)].isItCute === 'true' && clickedDiv.classList.contains('div7')) {
         library[library.indexOf(books)].cutnessStatus('false');
-        console.log('cutness lib to FALSE!')
         clickedDiv.querySelector('.p7').innerText = 'No, it is not cute!';
-        console.log('cutness p change!')
       } else if (library[library.indexOf(books)].isItCute === 'false' && clickedDiv.classList.contains('div7')) {
         library[library.indexOf(books)].cutnessStatus('true');
-        console.log('cutness lib to TRUE!')
         clickedDiv.querySelector('.p7').innerText = 'Yes, it is cute';
-        console.log('cutness p change!')
       } else if (library[library.indexOf(books)].isThereACats === 'true' && clickedDiv.classList.contains('div8')) {
         library[library.indexOf(books)].catnessStatus('false');
-        console.log('catness lib to FALSE!')
         clickedDiv.querySelector('.p8').innerText = 'No, there are no cats';
-        console.log('catness p change!')
       } else if (library[library.indexOf(books)].isThereACats === 'false' && clickedDiv.classList.contains('div8')) {
         library[library.indexOf(books)].catnessStatus('true');
-        console.log('catness lib to TRUE!')
         clickedDiv.querySelector('.p8').innerText = 'Yes, there are cats';
-        console.log('catness p change!')
-      }
-      console.log('Now i change local!')
+      };
       localStorage.setItem(`${dataIdDiv}`, JSON.stringify(library[library.indexOf(books)]));
     };
   });
-  console.dir(library, localStorage, n);
 };
 
 // function changeDataOnFly(clicked) {
-//   showHideDataInputForm(clicked);
-//   console.log(clicked.srcElement.parentElement.parentElement);
+//   showHideDataInputForm(clicked);parentElement);
   
 // };
 
@@ -194,7 +177,6 @@ function createBookOnShelf() {
     };
     activateDelMdfyBtns();
   });
-  console.dir(library, localStorage, n);
 };
 
 function addBookToShelf() {
@@ -305,7 +287,6 @@ function restoreLibraryFromLocal() {
       };
     };
     n += 1;
-    console.dir(library, localStorage, n);
   };
 };
 restoreLibraryFromLocal();
