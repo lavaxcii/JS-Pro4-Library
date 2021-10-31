@@ -309,6 +309,3 @@ function restoreLibraryFromLocal() {
   };
 };
 restoreLibraryFromLocal();
-
-//* Add favicon+, change title+, maybe add some styling
-//*  to deletion and/or bookshelf background+
